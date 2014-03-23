@@ -5,8 +5,7 @@ var Metronome;
     Metronome = function(callback, bpm) {
         this.callback = callback ? callback : function() {};
 
-        this.bpm = bpm ? bpm : 60;
-        this.frame = 1000 * 60 / this.bpm;
+        this.setBpm(bpm);
     };
 
     Metronome.prototype.start = function() {
@@ -17,6 +16,11 @@ var Metronome;
     Metronome.prototype.stop = function() {
         clearTimeout(this.timer);
     };
+
+    Metronome.prototype.setBpm = function(bpm) {
+        this.bpm = bpm ? bpm : 60;
+        this.frame = 1000 * 60 / this.bpm;
+    }
 
     Metronome.prototype.tick = function() {
         //Run original callback

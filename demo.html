@@ -5,6 +5,9 @@
 
     <title>Metronome.js Demo</title>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" media="screen" charset="utf-8">
+
     <script src="js/metronome.js"></script>
     <script>
         $(function() {
@@ -29,12 +32,31 @@
                     run = true;
                 }
             });
+            $bpm = $("#bpm");
+            $("#bpm-slider").slider({
+                min: 40,
+                max: 300,
+                value: 100,
+                slide: function(event, ui) {
+                    $bpm.text(ui.value);
+                    metro.setBpm(ui.value);
+                }
+            });
         });
     </script>
     <style>
         #indicator.active {
             color:red;
             text-shadow:0 0 5px red;
+        }
+        #bpm {
+            font-size:1.2em;
+            font-weight:bold;
+        }
+        #bpm-slider {
+            width:200px;
+            display:inline-block;
+            margin-left:1em;
         }
     </style>
 </head>
@@ -43,6 +65,6 @@
     <h1>Metronome.js</h1>
     <p>This is the demo page of Metronome.js. Here is metronome <span id="indicator">indicator</span></p>
     <p>To control this metronome, use this button: <button id="start-stop">Stop</button></p>
-
+    <p>Current BPM is <span id="bpm">100</span>. To control the bpm, use this slider: <span id="bpm-slider"></span></p>
 </body>
 </html>
