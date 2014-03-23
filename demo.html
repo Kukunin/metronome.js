@@ -8,7 +8,8 @@
     <script src="js/metronome.js"></script>
     <script>
         $(function() {
-            var indicator = document.getElementById('indicator');
+            var indicator = document.getElementById('indicator'),
+                run = true;
             window.metro = new Metronome(function() {
                 console.log(new Date().getTime());
                 indicator.className = 'active';
@@ -17,6 +18,17 @@
                 }, 100);
             }, 100);
             metro.start();
+            $("#start-stop").click(function() {
+                if ( run ) {
+                    metro.stop();
+                    $(this).text('Start');
+                    run = false;
+                } else {
+                    metro.start();
+                    $(this).text('Stop');
+                    run = true;
+                }
+            });
         });
     </script>
     <style>
@@ -30,6 +42,7 @@
 
     <h1>Metronome.js</h1>
     <p>This is the demo page of Metronome.js. Here is metronome <span id="indicator">indicator</span></p>
+    <p>To control this metronome, use this button: <button id="start-stop">Stop</button></p>
 
 </body>
 </html>

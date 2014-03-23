@@ -14,6 +14,10 @@ var Metronome;
         this.tick();
     };
 
+    Metronome.prototype.stop = function() {
+        clearTimeout(this.timer);
+    };
+
     Metronome.prototype.tick = function() {
         //Run original callback
         this.callback();
@@ -23,7 +27,7 @@ var Metronome;
             delay = nextRunAt - (new Date().getTime()),
             that = this;
 
-        setTimeout(function() {
+        this.timer = setTimeout(function() {
             that.tick.call(that);
         }, delay);
 
