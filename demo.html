@@ -8,32 +8,28 @@
     <script src="js/metronome.js"></script>
     <script>
         $(function() {
-            var indicator = $(".indicator")[0];
+            var indicator = document.getElementById('indicator');
             window.metro = new Metronome(function() {
                 console.log(new Date().getTime());
-                indicator.className = 'indicator active';
+                indicator.className = 'active';
                 setTimeout(function() {
-                    indicator.className = 'indicator';
+                    indicator.className = '';
                 }, 100);
             }, 100);
             metro.start();
         });
     </script>
     <style>
-        .indicator {
-            width:200px;
-            height:200px;
-            margin:0 auto;
-        }
-        .indicator.active {
-            background:black;
+        #indicator.active {
+            color:red;
+            text-shadow:0 0 5px red;
         }
     </style>
 </head>
 <body>
 
-    <div class="indicator">
-    </div>
+    <h1>Metronome.js</h1>
+    <p>This is the demo page of Metronome.js. Here is metronome <span id="indicator">indicator</span></p>
 
 </body>
 </html>
