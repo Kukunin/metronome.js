@@ -22,9 +22,19 @@ var Metronome;
         this.frame = 1000 * 60 / this.bpm;
     }
 
+    Metronome.prototype.mute = function() {
+        this.muted = true;
+    }
+
+    Metronome.prototype.unmute = function() {
+        this.muted = false;
+    }
+
     Metronome.prototype.tick = function() {
         //Run original callback
-        this.callback();
+        if ( !this.muted ) {
+            this.callback();
+        }
 
         //Calculate delay for setTimeout
         var nextRunAt = this.runAt + this.frame,

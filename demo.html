@@ -32,6 +32,15 @@
                     run = true;
                 }
             });
+            $("#mute-unmute").click(function() {
+                if ( metro.muted ) {
+                    metro.unmute();
+                    $(this).text('Mute');
+                } else {
+                    metro.mute();
+                    $(this).text('Unmute');
+                }
+            });
             $bpm = $("#bpm");
             $("#bpm-slider").slider({
                 min: 40,
@@ -64,7 +73,7 @@
 
     <h1>Metronome.js</h1>
     <p>This is the demo page of Metronome.js. Here is metronome <span id="indicator">indicator</span></p>
-    <p>To control this metronome, use this button: <button id="start-stop">Stop</button></p>
+    <p>To control this metronome, use these buttons: <button id="start-stop">Stop</button> <button id="mute-unmute">Mute</button></p>
     <p>Current BPM is <span id="bpm">100</span>. To control the bpm, use this slider: <span id="bpm-slider"></span></p>
 </body>
 </html>
